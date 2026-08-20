@@ -1,263 +1,101 @@
-# 📷 Leitor de QR Code - Captura de Tela
+# 📷 Leitor de QR Code
 
-[![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)]()
+Aplicativo desktop para ler QR Codes diretamente da tela, sem necessidade de abrir um botão manual de captura. Basta abrir o programa, selecionar a área desejada e o app identifica o QR automaticamente.
 
-Uma ferramenta desktop intuitiva para capturar e ler QR Codes diretamente da tela. Com uma interface simples e amigável, você pode selecionar qualquer área da tela e obter instantaneamente o conteúdo do QR Code.
+## ✅ Funcionalidades
 
-## ✨ Funcionalidades
+- Seleção direta da tela com arraste do mouse
+- Leitura automática de QR Code
+- Abertura automática de links
+- Copiar conteúdo para a área de transferência
+- Interface leve e focada em uso rápido
+- Executável gerado sem console para uso final
 
-- 🖱️ **Seleção intuitiva**: Arraste o mouse para selecionar qualquer área da tela
-- 📱 **Leitura automática**: Detecta e decodifica QR Codes automaticamente
-- 📋 **Cópia rápida**: Copie o conteúdo do QR Code com um clique
-- 🎯 **Múltiplos QR Codes**: Suporta múltiplos QR Codes na mesma captura
-- 🖥️ **Multi-plataforma**: Funciona no Windows, Linux e macOS
-- 🎨 **Interface moderna**: Design limpo e intuitivo
+## 📋 Requisitos
 
-## 📋 Pré-requisitos
+- Windows 10/11
+- Python 3.13+ para rodar a versão em código
+- Biblioteca do projeto já listada em [requirements.txt](requirements.txt)
 
-- Python 3.7 ou superior
-- Pip (gerenciador de pacotes Python)
-- Git (opcional, para clonar o repositório)
+## 🚀 Como rodar em Python
 
-## 🚀 Instalação
+1. Abra o terminal no diretório do projeto
+2. Crie/ative o ambiente virtual
+3. Instale as dependências:
 
-### 1. Clonar o repositório
-
-```bash
-git clone https://github.com/seu-usuario/leitor-qr-code.git
-cd leitor-qr-code
-```
-
-### 2. Criar e ativar ambiente virtual (recomendado)
-
-#### Windows (CMD/PowerShell)
-```bash
+```powershell
 python -m venv venv
-venv\Scripts\activate
+.\venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python main.py
 ```
 
-#### Linux / macOS
-```bash
-python3 -m venv venv
-source venv/bin/activate
+### Teste rápido sem gerar executável
+
+Para validar a lógica do app sem rebuild do `.exe`:
+
+```powershell
+.\venv\Scripts\python.exe main.py
 ```
 
-### 3. Instalar dependências
+Se quiser abrir sem janela de terminal:
 
-```bash
-pip install --upgrade pip
-pip install -r requirements.txt
+```powershell
+.\venv\Scripts\pythonw.exe main.py
 ```
 
-## 📦 Dependências
+## 🧩 Como usar
 
-| Pacote | Versão | Descrição |
-|--------|--------|-----------|
-| opencv-python | 4.8.1.78 | Processamento de imagens |
-| pyzbar | 0.1.9 | Leitura de QR Codes |
-| pillow | 10.1.0 | Manipulação de imagens |
-| pygetwindow | 0.0.9 | Controle de janelas |
-| numpy | 1.24.3 | Operações matemáticas |
+1. Execute o programa
+2. A aplicação entra imediatamente no modo de seleção
+3. Arraste o mouse para marcar a área com o QR Code
+4. Solte o mouse
+5. O app identifica o QR e exibe o conteúdo
+6. Se for um link, ele abre automaticamente
+7. Você pode copiar o texto com um botão
 
-## 🎯 Como usar
+## 📦 Estrutura do projeto
 
-1. **Inicie o programa**
-   ```bash
-   python main.py
-   ```
-
-2. **Capture o QR Code**
-   - Clique no botão "🔍 Capturar QR Code"
-   - A tela ficará semi-transparente
-   - Arraste o mouse para selecionar a área do QR Code
-   - Solte o mouse para capturar
-
-3. **Visualize o resultado**
-   - O conteúdo do QR Code será exibido automaticamente
-   - Clique em "📋 Copiar" para copiar o texto
-   - Múltiplos QR Codes serão listados separadamente
-
-### 🎮 Atalhos do teclado
-
-- `ESC`: Cancela a seleção atual
-- `Ctrl+C`: Copia o conteúdo (quando disponível)
-
-## 📁 Estrutura do projeto
-
-```
+```text
 leitor-qr-code/
-│
+├── main.py
+├── README.md
+├── requirements.txt
 ├── src/
-│   ├── __init__.py         # Pacote Python
-│   ├── main.py             # Ponto de entrada
-│   ├── qr_scanner.py       # Classe principal do scanner
-│   └── utils.py            # Funções utilitárias
-│
-├── requirements.txt        # Dependências do projeto
-├── run.bat                 # Script de execução (Windows)
-├── run.sh                  # Script de execução (Linux/Mac)
-├── .gitignore             # Arquivos ignorados pelo Git
-├── LICENSE                # Licença MIT
-└── README.md              # Documentação
+│   ├── main.py
+│   ├── qr_scanner.py
+│   └── utils.py
+├── dist/
+│   └── QRCodeReader.exe
+└── .gitignore
 ```
 
-## 🔧 Configuração
+## 🏗️ Gerar executável
 
-### Ambiente de desenvolvimento
+O app já foi configurado para gerar um executável sem janela de terminal. Para gerar novamente:
 
-```bash
-# Instalar dependências de desenvolvimento
-pip install -r requirements-dev.txt  # Se existir
-
-# Executar testes
-python -m pytest tests/
-
-# Verificar estilo de código
-flake8 src/
+```powershell
+.\venv\Scripts\python.exe -m PyInstaller --onefile --windowed --name "QRCodeReader" --hidden-import=cv2 --hidden-import=pyzbar --hidden-import=PIL --hidden-import=numpy --hidden-import=pygetwindow --collect-all=cv2 --collect-all=pyzbar --collect-all=PIL --collect-all=numpy --add-data "src;src" main.py
 ```
 
-### Criar executável (opcional)
+## 🐛 Problemas comuns
 
-```bash
-# Instalar PyInstaller
-pip install pyinstaller
+- `Erro ao Capturar área: unknown option "-pad"`  
+  Isso foi corrigido. O problema era uso incorreto do parâmetro `pad` no widget `Tkinter.Text`. O correto é `padx` e `pady`.
 
-# Gerar executável
-pyinstaller --onefile --windowed --icon=icon.ico --name "QRCodeReader" main.py
-```
+- O programa não reconhece o QR  
+  Verifique se a área selecionada está bem centralizada no QR e se a imagem está nítida.
 
-## 🐛 Solução de problemas
+- O link não abre  
+  O programa tenta abrir automaticamente quando o conteúdo começa com `http://` ou `https://`.
 
-### Problemas comuns e soluções
+## 📝 Licença
 
-| Problema | Solução |
-|----------|---------|
-| **Erro: `ModuleNotFoundError`** | Execute `pip install -r requirements.txt` |
-| **QR Code não detectado** | Certifique-se de que o QR Code está nítido e bem iluminado |
-| **Erro de permissão** | Execute como administrador (Windows) ou com `sudo` (Linux/Mac) |
-| **Interface não abre** | Verifique se o Python 3.7+ está instalado |
+MIT
 
-### Logs de erro
+## 🤝 Autor
 
-Os erros são exibidos diretamente no console. Para debug:
-
-```bash
-python main.py --debug  # Modo debug
-```
-
-## 🤝 Contribuindo
-
-Contribuições são bem-vindas! Siga estes passos:
-
-1. Fork o projeto
-2. Crie sua branch (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-### Guidelines
-
-- Mantenha o código limpo e documentado
-- Adicione testes para novas funcionalidades
-- Atualize a documentação quando necessário
-- Siga o PEP 8 para estilo de código
-
-## 📝 Licença MIT
-
-Copyright (c) 2024 [Seu Nome]
-
-A permissão é concedida, gratuitamente, a qualquer pessoa que obtenha uma cópia
-deste software e arquivos de documentação associados (o "Software"), para lidar
-no Software sem restrição, incluindo sem limitação os direitos
-de usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e/ou vender
-cópias do Software, e permitir que pessoas a quem o Software seja
-fornecido o façam, sujeito às seguintes condições:
-
-O aviso de copyright acima e este aviso de permissão devem ser incluídos em todas
-as cópias ou partes substanciais do Software.
-
-O SOFTWARE É FORNECIDO "COMO ESTÁ", SEM GARANTIA DE QUALQUER TIPO, EXPRESSA OU
-IMPLÍCITA, INCLUINDO MAS NÃO SE LIMITANDO ÀS GARANTIAS DE COMERCIALIZAÇÃO,
-ADEQUAÇÃO A UM DETERMINADO FIM E NÃO VIOLAÇÃO. EM NENHUM CASO OS AUTORES OU
-TITULARES DE DIREITOS DE AUTOR SERÃO RESPONSÁVEIS POR QUALQUER RECLAMAÇÃO, DANOS
-OU OUTRA RESPONSABILIDADE, SEJA EM AÇÃO DE CONTRATO, TORT OU OUTRA FORMA, DECORRENTE
-DE, OU EM CONEXÃO COM O SOFTWARE OU O USO OU OUTRAS NEGOCIAÇÕES NO SOFTWARE.
-
-## 📊 Roadmap
-
-- [ ] Suporte a diferentes tipos de código de barras (EAN, UPC, etc.)
-- [ ] Histórico de QR Codes lidos
-- [ ] Exportar resultados para arquivo
-- [ ] Reconhecimento de QR Codes em imagens salvas
-- [ ] Tema escuro/claro
-- [ ] Notificações do sistema
-
-## 📞 Suporte
-
-- 📧 Email: xxxxxxxx
-- 💬 Issues: [GitHub Issues](https://github.com/seu-usuario/leitor-qr-code/issues)
-- 📖 Documentação: [Wiki do projeto](https://github.com/seu-usuario/leitor-qr-code/wiki)
-
-## 🙏 Agradecimentos
-
-- [OpenCV](https://opencv.org/) - Processamento de imagens
-- [pyzbar](https://github.com/NaturalHistoryMuseum/pyzbar) - Leitura de QR Codes
-- [Pillow](https://python-pillow.org/) - Manipulação de imagens
-- [Tkinter](https://docs.python.org/3/library/tkinter.html) - Interface gráfica
-
-## 📈 Estatísticas
-
-![GitHub stars](https://img.shields.io/github/stars/seu-usuario/leitor-qr-code)
-![GitHub forks](https://img.shields.io/github/forks/seu-usuario/leitor-qr-code)
-![GitHub issues](https://img.shields.io/github/issues/seu-usuario/leitor-qr-code)
-
----
-
-⭐ **Se este projeto ajudou você, considere dar uma estrela no GitHub!**
-
-Feito  por [@yuriodilon](https://github.com/yuriodilon)
-
-```
-
-## 📁 Criar arquivos adicionais
-
-### .gitignore completo
-
-```gitignore
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# Virtual Environment
-venv/
-env/
-ENV/
-env.bak/
-venv.bak/
-
-# PyCharm
-.idea/
-*.iml
-
-# VSCode
-.vscode/
-*.code-workspace
-
-# Sublime Text
-*.sublime-project
-*.sublime-workspace
-
-# Spyder
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
+[@yuriodilon](https://github.com/yuriodilon)
 /site
 
 # mypy
