@@ -1,12 +1,55 @@
 import sys
-import cv2
+import os
+import warnings
+warnings.filterwarnings("ignore")
+
+# Tentar importar OpenCV de forma robusta
+try:
+    import cv2
+except ImportError:
+    try:
+        # Tentar importar do caminho do executável
+        if hasattr(sys, '_MEIPASS'):
+            cv2_path = os.path.join(sys._MEIPASS, 'cv2')
+            if os.path.exists(cv2_path):
+                sys.path.insert(0, cv2_path)
+        import cv2
+    except ImportError:
+        print("ERRO: OpenCV não encontrado. Instale: pip install opencv-python-headless")
+        sys.exit(1)
+
+# Tentar importar PIL de forma robusta
+try:
+    from PIL import ImageGrab, Image
+except ImportError:
+    try:
+        # Tentar importar do caminho do executável
+        if hasattr(sys, '_MEIPASS'):
+            pil_path = os.path.join(sys._MEIPASS, 'PIL')
+            if os.path.exists(pil_path):
+                sys.path.insert(0, pil_path)
+        from PIL import ImageGrab, Image
+    except ImportError:
+        print("ERRO: PIL/Pillow não encontrado. Instale: pip install pillow")
+        sys.exit(1)
+
 import numpy as np
-from PIL import ImageGrab, Image
 from pyzbar.pyzbar import decode
 import tkinter as tk
 from tkinter import messagebox
 import time
-from src.utils import copy_to_clipboard
+import pygetwindow as gw
+
+# Importar utils
+try:
+    from src.utils import copy_to_clipboard
+except ImportError:
+    # Fallback para função copiar
+    def copy_to_clipboard(root, text):
+        root.clipboard_clear()
+        root.clipboard_append(text)
+        root.update()
+        messagebox.showinfo("Sucesso", "Texto copiado para a área de transferência!")
 
 class QRCodeScanner:
     def __init__(self):
