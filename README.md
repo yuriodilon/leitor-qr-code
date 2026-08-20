@@ -1,6 +1,3 @@
-Aqui está um README.md completo e profissional para o seu projeto:
-
-```markdown
 # 📷 Leitor de QR Code - Captura de Tela
 
 [![Python Version](https://img.shields.io/badge/python-3.7+-blue.svg)](https://www.python.org/downloads/)
@@ -199,7 +196,7 @@ DE, OU EM CONEXÃO COM O SOFTWARE OU O USO OU OUTRAS NEGOCIAÇÕES NO SOFTWARE.
 
 ## 📞 Suporte
 
-- 📧 Email: seu-email@exemplo.com
+- 📧 Email: xxxxxxxx
 - 💬 Issues: [GitHub Issues](https://github.com/seu-usuario/leitor-qr-code/issues)
 - 📖 Documentação: [Wiki do projeto](https://github.com/seu-usuario/leitor-qr-code/wiki)
 
@@ -220,7 +217,7 @@ DE, OU EM CONEXÃO COM O SOFTWARE OU O USO OU OUTRAS NEGOCIAÇÕES NO SOFTWARE.
 
 ⭐ **Se este projeto ajudou você, considere dar uma estrela no GitHub!**
 
-Feito com ❤️ por [Seu Nome](https://github.com/seu-usuario)
+Feito  por [@yuriodilon](https://github.com/yuriodilon)
 
 ```
 
@@ -619,5 +616,3 @@ pytest tests/test_qr_scanner.py
 
 Ao contribuir, você concorda que suas contribuições serão licenciadas sob a licença MIT.
 ```
-
-Agora você tem um projeto completo, profissional e bem documentado! 🚀
